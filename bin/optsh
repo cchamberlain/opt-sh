@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+
+var NC='\033[0m';
+var RED='\033[0;31m';
+var GREEN='\033[0;32m';
+var BLUE='\033[0;34m';
+var PURPLE='\033[0;35m';
+var CYAN='\033[0;36m';
+
+var args = process.argv.slice(2);
+if(args.length == 0) {
+  throw RED + "- you must specify an option string -" + NC;
+}
+
+var _ = require('lodash');
+
+var options=args[0];
+
+var opts = options.split('\n');
+var commandName = opts.shift();
+
+do {
+  var opt = opts.shift();
+  opt = parse(opt);
+
+}while(opts.length > 0);
+
+
+function parse(opt) {
+  var optType = opt[0];
+  var splitPoint = opt.indexOf(':');
+  opt = {
+    short: opt[1],
+    long: opt[2] == '+' ? opt.substring(3, splitPoint) : null,
+    message: opt.substr(splitPoint + 1).trim()
+  };
+
+  if(optType == '!') {
+    return parseFlag(opt);
+  } else if(optType == ':') {
+    return parseOpt(opt);
+  } else if(optType == '&') {
+    return parseArg(opt);
+  }
+  else {
+    throw RED + "- unsupported opt type -" + NC;
+  }
+}
+
+function parseFlag(opt) {
+  console.dir(opt);
+}
+
+function parseOpt(opt) {
+  console.dir(opt);
+}
+
+function parseArg(opt) {
+  console.dir(opt);
+}
+
+/*
+options="$1"
+usage_short="$2"
+usage_long="${3-"$usage_short"}"
+
+shopt -u nocasematch
+OPTIND=1
+while getopts "$options" opt; do
+  case "$opt" in
+n )
+  ;;
+h )
+print_message "$usage_long"
+exit 0
+;;
+\?)
+print_error "unknown option: -$OPTARG"
+print_error "$usage_short"
+exit 1
+;;
+: )
+print_error "missing option argument for: -$OPTARG"
+print_error "$usage_short"
+exit 1
+;;
+* )
+if ! grep -q $OPTARG <<< "$options" ; then
+print_error "unimplemented option: -$OPTARG"
+print_error "$usage_short"
+exit 1
+fi
+print_out "$OPTARG"
+esac
+done
+shift $((OPTIND-1))
+  */

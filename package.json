@@ -1,14 +1,14 @@
 {
-  "name": "opt-sh",
+  "name": "optsh",
   "version": "0.1.1",
   "description": "Options parsing for command line interfaces.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cchamberlain/opt-sh.git"
+    "url": "git+https://github.com/cchamberlain/optsh.git"
   },
   "keywords": [
     "options",
@@ -18,7 +18,10 @@
   "author": "Cole Chamberlain",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cchamberlain/opt-sh/issues"
+    "url": "https://github.com/cchamberlain/optsh/issues"
   },
-  "homepage": "https://github.com/cchamberlain/opt-sh#readme"
+  "homepage": "https://github.com/cchamberlain/optsh#readme",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
 }
